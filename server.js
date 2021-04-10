@@ -27,27 +27,27 @@ const mydb = [
 ]
 
 app.get('/', (req, res)=>{
-    res.json('get request')
+    res.json(mydb)
 })
 
 app.post('/signin', (req, res)=>{
     if(req.body.email == mydb[0].email){
-        res.json('win. Successfull sign in.')
+        res.json('win 35-server.js.')
     }else{
-        res.status(400).json('not successfull')
+        res.status(400).json('fail 37-server.js')
     }
     res.send('sign in post request')
 })
 
 app.post('/register', (req, res)=>{
-    console.log(req.body)
+    console.log('43', req.body)
     mydb.push({
         id: req.body.id,
         name: req.body.name,
         email: req.body.email,
         password: req.body.password
     })
-    res.send(mydb)
+    res.json(mydb)
 })
 
 app.get('/profile/:id', (req, res)=>{
