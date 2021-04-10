@@ -31,11 +31,20 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/signin', (req, res)=>{
-    if(req.body.email == mydb[0].email){
-        res.json('win 35-server.js.')
+    let x = false;
+    
+    mydb.forEach(a=>{
+        if(req.body.email == a.email && req.body.password == a.password){
+            x = true
+        }
+    })
+
+    if(x==true){
+        res.json(mydb)
     }else{
         res.status(400).json('fail 37-server.js')
     }
+
     res.send('sign in post request')
 })
 
@@ -47,7 +56,7 @@ app.post('/register', (req, res)=>{
         email: req.body.email,
         password: req.body.password
     })
-    res.json(mydb)
+    res.json(req.body)
 })
 
 app.get('/profile/:id', (req, res)=>{
