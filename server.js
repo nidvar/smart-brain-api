@@ -3,6 +3,13 @@ const app = express();
 const cors = require('cors');
 const knex = require('knex');
 const bcrypt = require('bcrypt');
+const Clarifai = require('clarifai');
+
+const clarifai_key = require('./api_keys/clarifai_key')
+
+const clarifai_app = new Clarifai.App({
+    apiKey:clarifai_key.clarifai_key
+});
 
 const signin = require('./controllers/signin');
 const onRegister = require('./controllers/register');
@@ -30,6 +37,19 @@ app.post('/signin', (req, res)=>{signin.signin(req, res, database, bcrypt)})
 app.post('/register', (req, res)=>{onRegister.onRegister(req, res, database, bcrypt)})
 
 app.get('/profile/:id', (req, res)=>{profile_stuff.profile_stuff(req, res, database)})
+
+app.post('/grab_api', (req, res)=>{
+
+    clarifai_app.models.predict(
+        Clarifai.FACE_DETECT_MODEL,
+        req.body.user_input
+    ).then(a=>{
+        res.json(a)
+    }).catch(a=>{
+        console.log(a)
+    })
+
+})
 
 app.listen(3001, ()=>{
     console.log('3001 ======================');

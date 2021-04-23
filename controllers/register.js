@@ -1,5 +1,14 @@
 const onRegister = (req, res, database, bcrypt)=> {
-    console.log('43', req.body)
+    if(req.body.password.length < 8){
+        console.log('SERVER: password too small')
+        return
+    }
+    let emailvalidation = req.body.email.split('');
+
+    if(!emailvalidation.includes('@') || !emailvalidation.includes('.')){
+        console.log('SERVER: please enter valid email')
+        return
+    }
 
     bcrypt.hash(req.body.password, 10, function(err, hash) {
         console.log(hash)
