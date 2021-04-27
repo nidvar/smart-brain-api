@@ -21,6 +21,8 @@ const signin = (req, res, database, bcrypt)=>{
             console.log('email fail')
             res.status(400).json('email fail')
         }
+    }).catch(a=>{
+        console.log(a, "catching signin fail")
     })
 }
 
