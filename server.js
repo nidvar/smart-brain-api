@@ -3,11 +3,11 @@ const app = express();
 const cors = require('cors');
 const knex = require('knex');
 const bcrypt = require('bcrypt');
-const Clarifai = require('clarifai');
+const clarifai = require('clarifai');
 
 const clarifai_key = require('./api_keys/clarifai_key')
 
-const clarifai_app = new Clarifai.App({
+const clarifai_app = new clarifai.App({
     apiKey:clarifai_key.clarifai_key
 });
 
