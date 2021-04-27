@@ -18,12 +18,12 @@ const onRegister = (req, res, database, bcrypt)=> {
             email: req.body.email,
             name: req.body.name,
             joined: new Date()
-        }).then(console.log)
+        }).then(console.log).catch(a=>{console.log(a, 'catching fail')})
     
         database('login').insert({
             email: req.body.email,
             hash: hash,
-        }).then(console.log)
+        }).then(console.log).catch(a=>{console.log(a, 'catching fail')})
 
     });
 
