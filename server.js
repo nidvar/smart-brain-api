@@ -29,7 +29,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res)=>{
-    res.json(mydb)
+    res.json('random')
 })
 
 app.post('/signin', (req, res)=>{signin.signin(req, res, database, bcrypt)})
