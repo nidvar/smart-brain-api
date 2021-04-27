@@ -5,10 +5,10 @@ const knex = require('knex');
 const bcrypt = require('bcrypt');
 const clarifai = require('clarifai');
 
-const clarifai_key = require('./api_keys/clarifai_key')
+const c_api_key = require('./api_keys/clarifai_key')
 
 const clarifai_app = new clarifai.App({
-    apiKey:clarifai_key.clarifai_key
+    apiKey:c_api_key.c_api_key
 });
 
 const signin = require('./controllers/signin');
