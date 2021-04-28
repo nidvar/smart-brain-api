@@ -4,6 +4,7 @@ const cors = require('cors');
 const knex = require('knex');
 const bcrypt = require('bcrypt');
 const clarifai = require('clarifai');
+app.use(cors())
 
 // const c_api_key = require('./api_keys/clarifai_key')
 
@@ -18,14 +19,14 @@ const profile_stuff = require('./controllers/profile')
 const database = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      host : 'postgresql-animated-85651',
       user : 'postgres',
       password : 'post',
       database : 'smart-brain'
     }
 });
 
-app.use(cors())
+
 app.use(express.json())
 
 app.get('/', (req, res)=>{
