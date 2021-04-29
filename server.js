@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt');
 const clarifai = require('clarifai');
 app.use(cors())
 
-// const c_api_key = require('./api_keys/clarifai_key')
-
 const clarifai_app = new clarifai.App({
-    apiKey:'asdf'
+    apiKey:process.env.clarifai_heroku_key
 });
 
 const signin = require('./controllers/signin');
